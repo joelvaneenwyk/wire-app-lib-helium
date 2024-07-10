@@ -18,12 +18,12 @@ abstract public class DatabaseTestBase {
     public static void initiate() throws Exception {
         BasicConfigurator.configure();
 
-        var databaseUrl = System.getenv("POSTGRES_URL");
+        String databaseUrl = System.getenv("POSTGRES_URL");
         databaseUrl = "jdbc:postgresql://" + (databaseUrl != null ? databaseUrl : "localhost/helium");
-        var user = System.getenv("POSTGRES_USER");
-        var password = System.getenv("POSTGRES_PASSWORD");
+        String user = System.getenv("POSTGRES_USER");
+        String password = System.getenv("POSTGRES_PASSWORD");
 
-        var driverClass = Class.forName("org.postgresql.Driver");
+        Class driverClass = Class.forName("org.postgresql.Driver");
         final Driver driver = (Driver) driverClass.getDeclaredConstructor().newInstance();
         DriverManager.registerDriver(driver);
 
