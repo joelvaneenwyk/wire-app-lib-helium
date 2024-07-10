@@ -35,7 +35,7 @@ dependencies {
 group = "com.wire"
 version = "1.3.1"
 description = "Helium"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = JavaVersion.VERSION_1_9
 
 java {
     withSourcesJar()
