@@ -469,8 +469,17 @@ public class API extends LoginClient implements WireAPI {
         return team.members.stream().map(x -> x.user).collect(Collectors.toList());
     }
 
+    /**
+     * Static conversion class
+     */
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class _Conv {
+        /**
+         * Constructs a new _Conv object.
+         */
+        public _Conv() {
+        }
+
         @JsonProperty
         public UUID id;
 
