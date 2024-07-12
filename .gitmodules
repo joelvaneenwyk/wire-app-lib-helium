@@ -1,0 +1,4 @@
+[submodule "libs/xenon"]
+	path = libs/xenon
+	url = https://github.com/joelvaneenwyk/wire-app-lib-xenon
+	branch = main

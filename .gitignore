@@ -3,7 +3,7 @@
 
 target/
 data/
-libs/
+
 .classpath
 .project
 .settings

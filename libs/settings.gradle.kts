@@ -4,5 +4,5 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 
-rootProject.name = "helium"
-include("libs")
+rootProject.name = "helium-libs"
+include("xenon")

@@ -4,12 +4,18 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 
+group = "com.wire"
+version = "1.3.1"
+description = "Helium"
+java.sourceCompatibility = JavaVersion.VERSION_1_9
+
 plugins {
     `java-library`
     `maven-publish`
 }
 
 repositories {
+    mavenCentral()
     mavenLocal()
     maven {
         url = uri("https://repo.maven.apache.org/maven2/")
@@ -17,13 +23,15 @@ repositories {
 }
 
 dependencies {
-    api(libs.com.wire.xenon)
+    implementation(libs.com.wire.xenon)
+
     api(libs.jakarta.ws.rs.jakarta.ws.rs.api)
     api(libs.org.glassfish.tyrus.bundles.tyrus.standalone.client)
     api(libs.org.glassfish.jersey.core.jersey.client)
     api(libs.org.flywaydb.flyway.core)
     api(libs.org.glassfish.jersey.inject.jersey.hk2)
     api(libs.com.fasterxml.jackson.jaxrs.jackson.jaxrs.json.provider)
+
     testImplementation(libs.org.slf4j.slf4j.api)
     testImplementation(libs.org.slf4j.slf4j.log4j12)
     testImplementation(libs.javax.activation.activation)
@@ -31,11 +39,6 @@ dependencies {
     testImplementation(libs.org.junit.jupiter.junit.jupiter)
     testImplementation(libs.org.junit.jupiter.junit.jupiter.engine)
 }
-
-group = "com.wire"
-version = "1.3.1"
-description = "Helium"
-java.sourceCompatibility = JavaVersion.VERSION_1_9
 
 java {
     withSourcesJar()
