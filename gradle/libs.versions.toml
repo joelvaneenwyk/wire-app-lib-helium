@@ -20,7 +20,7 @@ org-junit-jupiter-junit-jupiter-engine = "5.10.3"
 org-postgresql-postgresql = "42.7.3"
 
 org-slf4j-slf4j-api = "2.0.13"
-org-slf4j-slf4j-log4j12 = "1.7.36"
+org-slf4j-slf4j-log4j12 = "2.0.13"
 
 [libraries]
 com-wire-xenon = { module = "com.wire:xenon", version.ref = "com-wire-xenon" }
