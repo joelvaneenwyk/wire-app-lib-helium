@@ -28,3 +28,9 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+
+  # Maintain dependencies for Git submodules
+  - package-ecosystem: 'gitsubmodule'
+    directory: '/'
+    schedule:
+      interval: 'daily'
