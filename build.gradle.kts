@@ -5,7 +5,7 @@
  */
 
 group = "com.wire"
-version = "1.3.1"
+version = "1.3.2"
 description = "Helium"
 java.sourceCompatibility = JavaVersion.VERSION_1_9
 
