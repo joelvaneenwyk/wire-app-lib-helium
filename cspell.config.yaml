@@ -1,0 +1,11 @@
+version: "0.2"
+ignorePaths: []
+dictionaryDefinitions:
+  - name: wire-app-lib-helium
+    path: ./.github/config/cspell-wire-app-lib-helium.dict
+    addWords: true
+dictionaries:
+  - wire-app-lib-helium
+words: []
+ignoreWords: []
+import: []
