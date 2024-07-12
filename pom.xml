@@ -81,7 +81,7 @@
             <artifactId>tyrus-standalone-client</artifactId>
             <!-- This needs to stay fixed on 1.x.y version due to compatibility with dropwizard -->
             <!--suppress MavenPackageUpdate -->
-            <version>1.13.1</version>
+            <version>2.1.5</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
