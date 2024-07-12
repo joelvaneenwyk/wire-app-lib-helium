@@ -1,13 +1,13 @@
-name: Release to Maven Central
+name: Validate Build
 
 on:
   push:
-    branches: [main, master, develop]
+    branches: [main, develop, release/**]
   pull_request:
-    branches: [main, master, develop]
-  workflow_dispatch:
+    branches: [main, develop, release/**]
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   tests:
@@ -20,6 +20,7 @@ jobs:
         image: postgres:15
         env:
           POSTGRES_PASSWORD: postgres
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,32 +30,20 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
+          # Running setup-java again overwrites the settings.xml
           distribution: 'temurin'
           java-version: 11
 
+      # override template environment variables
       - name: Setup Environment Variables
         run: |
           echo "POSTGRES_USER=postgres" >> $GITHUB_ENV
           echo "POSTGRES_PASSWORD=postgres" >> $GITHUB_ENV
           echo "POSTGRES_URL=postgres:5432/postgres" >> $GITHUB_ENV
 
-      - name: Execute Tests
+      - name: Run Tests
         run: |
           mvn test -DargLine="-Djava.library.path=$LD_LIBRARY_PATH"
-
-      - name: Try to create package
-        run: |
-          mvn package -DskipTests
-
-  release:
-    needs: [ tests ]
-    name: Release on Sonatype OSS
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          submodules: recursive
 
       - name: Create Package
         run: |
@@ -70,12 +59,11 @@ jobs:
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
 
-      - name: Publish to the Maven Central Repository
+      - name: Publish to MVN
         continue-on-error: true
         run: mvn -DskipTests --batch-mode deploy
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MAVEN_OPTS: '--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED'
 
       - name: Set up Java for publishing to GitHub Packages
